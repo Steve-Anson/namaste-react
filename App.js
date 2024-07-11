@@ -3,7 +3,13 @@ import ReactDOM from "react-dom/client";
 
 const Title = () => <h1>Namaste React</h1>;
 
-const title = <h3>Hello Steve</h3>;
+const elem = <h4>React Element</h4>;
+const title = (
+  <>
+    <h3>Hello Steve</h3>
+    {elem}
+  </>
+);
 
 const HeadingComponent = () => (
   <div id="container">
