@@ -1,0 +1,195 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+@font-face {
+  font-family: ProximaNova;
+  src: url(fonts/fonnts.com-Proxima_Nova_Soft_W03_Semibold.ttf);
+}
+
+@font-face {
+  font-family: ProximaNovaCondBlack;
+  src: url(fonts/fonnts.com-Proxima_Nova_Condensed_Black.otf);
+}
+
+@font-face {
+  font-family: Gilroy;
+  src: url(fonts/Gilroy-Bold.ttf);
+}
+
+@font-face {
+  font-family: GilroyRegular;
+  src: url(fonts/Gilroy-Regular.ttf);
+}
+
+@font-face {
+  font-family: GilroyLight;
+  src: url(fonts/Gilroy-Light.ttf);
+}
+
+@font-face {
+  font-family: GilroyMedium;
+  src: url(fonts/Gilroy-Medium.ttf);
+}
+
+@font-face {
+  font-family: GilroyHeavy;
+  src: url(fonts/Gilroy-Heavy.ttf);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+header {
+  font-family: ProximaNova;
+  box-shadow: 0px 8px 8px rgb(241, 239, 239);
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 0;
+}
+
+.nav-logo-container {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.nav-link-logo {
+  fill: rgb(61, 65, 82);
+}
+
+.cart-logo {
+  stroke: black;
+  stroke-width: 1.5px;
+  fill: white;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-link a {
+  color: rgb(61, 65, 82);
+  text-decoration: none;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  width: 90%;
+  max-width: 1143px;
+  margin: 50px auto;
+}
+
+.card {
+  width: 254px;
+  margin-bottom: 32px;
+  transition: transform 0.1s ease;
+}
+
+.card:hover {
+  transform: scale(0.95);
+}
+
+.card-img-container {
+  position: relative;
+}
+
+.card-img {
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+  border-radius: 16px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.card-overlay {
+  position: absolute;
+  bottom: 0;
+  height: 81px;
+  width: 100%;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  background: linear-gradient(rgba(27, 30, 36, 0) 0%, rgb(27, 30, 36) 84.21%);
+
+  display: flex;
+  align-items: end;
+}
+
+.card-discount-details {
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  text-transform: uppercase;
+  padding: 8px 12px;
+  font-size: 21px;
+  font-family: ProximaNovaCondBlack;
+}
+
+.card-details {
+  margin-left: 12px;
+}
+
+.card-details h4 {
+  font-size: 18px;
+  font-family: Gilroy;
+  margin-top: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.card-rating-details {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  margin-top: 3px;
+}
+
+.card-rating-details p:first-of-type {
+  font-family: GilroyMedium;
+}
+
+.card-rating-details p:last-of-type {
+  font-family: Gilroy;
+  font-weight: 200;
+}
+
+.cuisine-container {
+  color: rgba(2, 6, 12, 0.6);
+  font-family: GilroyMedium;
+  margin-top: 3px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cuisine-details {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
