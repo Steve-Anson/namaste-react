@@ -3,6 +3,7 @@ import resList from "../../utils/mockData";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../../utils/useOnlineStatus";
 
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
@@ -25,9 +26,9 @@ const Body = () => {
   useEffect(() => {
     fetchData();
 
-    window.addEventListener("scroll", handleScroll);
+    // window.addEventListener("scroll", handleScroll);
 
-    return () => window.removeEventListener("scroll", handleScroll);
+    // return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const fetchData = async () => {
@@ -38,10 +39,10 @@ const Body = () => {
     );
     const jsondata = await data.json();
     const json = JSON.parse(jsondata.contents);
-    console.log(
-      json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants
-    );
-    console.log(json.data.cards);
+    // console.log(
+    //   json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants
+    // );
+    // console.log(json.data.cards);
     setListOfRestaurants(
       json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants
     );
@@ -51,59 +52,64 @@ const Body = () => {
     );
   };
 
-  const updateData = async () => {
-    // const requestOptions = {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-type": "application/json",
-    //     Accept: "application/json",
-    //   },
-    //   body: JSON.stringify({
-    //     lat: "9.91850",
-    //     lng: "76.25580",
-    //     nextOffset: "CJhlELQ4KICYv6GahouoGTCnEzgB",
-    //     widgetOffset: {
-    //       NewListingView_category_bar_chicletranking_TwoRows: "",
-    //       NewListingView_category_bar_chicletranking_TwoRows_Rendition: "",
-    //       Restaurant_Group_WebView_SEO_PB_Theme: "",
-    //       collectionV5RestaurantListWidget_SimRestoRelevance_food_seo: "9",
-    //       inlineFacetFilter: "",
-    //       restaurantCountWidget: "",
-    //     },
-    //     filters: {},
-    //     seoParams: {
-    //       seoUrl: "https://www.swiggy.com/",
-    //       pageType: "FOOD_HOMEPAGE",
-    //       apiName: "FoodHomePage",
-    //     },
-    //     page_type: "DESKTOP_WEB_LISTING",
-    //     _csrf: "XUoPBwSiFbHo-Vnkqg7G_gGrtMUrxCNitLZdAaTw",
-    //   }),
-    // };
-    // const data = await fetch(
-    //   `https://api.allorigins.win/get?url=${encodeURIComponent(
-    //     "https://www.swiggy.com/dapi/restaurants/list/update"
-    //   )}`,
-    //   requestOptions
-    // );
-    // const jsondata = await data.json();
-    // console.log(jsondata.contents);
-    // const json = JSON.parse(jsondata.contents);
-    // console.log(json);
-    // console.log(json.data.cards[0].card.card.gridElements.infoWithStyle.restaurants);
+  // const updateData = async () => {
+  // const requestOptions = {
+  //   method: "POST",
+  //   headers: {
+  //     "Content-type": "application/json",
+  //     Accept: "application/json",
+  //   },
+  //   body: JSON.stringify({
+  //     lat: "9.91850",
+  //     lng: "76.25580",
+  //     nextOffset: "CJhlELQ4KICYv6GahouoGTCnEzgB",
+  //     widgetOffset: {
+  //       NewListingView_category_bar_chicletranking_TwoRows: "",
+  //       NewListingView_category_bar_chicletranking_TwoRows_Rendition: "",
+  //       Restaurant_Group_WebView_SEO_PB_Theme: "",
+  //       collectionV5RestaurantListWidget_SimRestoRelevance_food_seo: "9",
+  //       inlineFacetFilter: "",
+  //       restaurantCountWidget: "",
+  //     },
+  //     filters: {},
+  //     seoParams: {
+  //       seoUrl: "https://www.swiggy.com/",
+  //       pageType: "FOOD_HOMEPAGE",
+  //       apiName: "FoodHomePage",
+  //     },
+  //     page_type: "DESKTOP_WEB_LISTING",
+  //     _csrf: "XUoPBwSiFbHo-Vnkqg7G_gGrtMUrxCNitLZdAaTw",
+  //   }),
+  // };
+  // const data = await fetch(
+  //   `https://api.allorigins.win/get?url=${encodeURIComponent(
+  //     "https://www.swiggy.com/dapi/restaurants/list/update"
+  //   )}`,
+  //   requestOptions
+  // );
+  // const jsondata = await data.json();
+  // console.log(jsondata.contents);
+  // const json = JSON.parse(jsondata.contents);
+  // console.log(json);
+  // console.log(json.data.cards[0].card.card.gridElements.infoWithStyle.restaurants);
 
-  };
+  // };
 
-  const handleScroll = () => {
-    if (
-      window.innerHeight + document.documentElement.scrollTop <
-      document.documentElement.offsetHeight
-    ) {
-      return;
-    }
-    console.log("Reached Bottom");
-    // updateData();
-  };
+  // const handleScroll = () => {
+  //   if (
+  //     window.innerHeight + document.documentElement.scrollTop <
+  //     document.documentElement.offsetHeight
+  //   ) {
+  //     return;
+  //   }
+  //   console.log("Reached Bottom");
+  //   // updateData();
+  // };
+
+  const onlineStatus = useOnlineStatus();
+  if (onlineStatus === false) {
+    return <h1>Looks like you are offline !!!</h1>;
+  }
 
   return listOfRestaurants.length === 0 ? (
     <Shimmer />
@@ -133,7 +139,13 @@ const Body = () => {
       </div>
       <div className="res-container">
         {filteredRestaurant.map((card) => (
-         <Link className="card-link" key={card.info.id} to={`/restaurants/${card.info.id}`}><RestaurantCard resData={card} /></Link> 
+          <Link
+            className="card-link"
+            key={card.info.id}
+            to={`/restaurants/${card.info.id}`}
+          >
+            <RestaurantCard resData={card} />
+          </Link>
         ))}
       </div>
     </div>

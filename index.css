@@ -117,3 +117,11 @@ img {
   border-radius: 8px;
   margin-bottom: 30px;
 }
+
+.user--details {
+  max-width: 300px;
+  margin: 20px auto;
+  border: 1px solid black;
+  border-radius: 5px;
+  text-align: center;
+}
